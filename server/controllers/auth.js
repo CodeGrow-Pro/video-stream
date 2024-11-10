@@ -9,7 +9,7 @@ import otpGenerator from 'otp-generator';
 
 
 dotenv.config();
-
+console.log(process.env.EMAIL_PASSWORD, process.env.EMAIL_USERNAME)
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {

@@ -1,6 +1,8 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
 export const BASEURL = `https://video-stream-apis.onrender.com`
+// `http://localhost:8700`
+// `https://video-stream-apis.onrender.com`
 const API = axios.create({ baseURL: `${BASEURL}/api` });
 
 //auth
