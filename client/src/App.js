@@ -13,7 +13,7 @@ import Favourites from '../src/pages/Favourites.jsx';
 import Profile from '../src/pages/Profile.jsx';
 import Upload from '../src/components/Upload.jsx';
 import DisplayPodcasts from '../src/pages/DisplayPodcasts.jsx';
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, HashRouter } from 'react-router-dom'
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 import AudioPlayer from "./components/AudioPlayer.jsx";
@@ -75,7 +75,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <BrowserRouter>
+      <HashRouter basename="/">
         {opensi && <Signin setSignInOpen={setSignInOpen} setSignUpOpen={setSignUpOpen} />}
         {SignUpOpen && <Signup setSignInOpen={setSignInOpen} setSignUpOpen={setSignUpOpen} />}
         {uploadOpen && <Upload setUploadOpen={setUploadOpen} />}
@@ -99,7 +99,7 @@ function App() {
           </Frame>
           {open && <ToastMessage open={open} message={message} severity={severity} />}
         </Podstream>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 }
