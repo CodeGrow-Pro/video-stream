@@ -7,6 +7,9 @@ import { PodcastCard } from '../components/PodcastCard.jsx'
 import { Button, CircularProgress, Grid, IconButton, MenuItem, Select } from "@mui/material";
 import Upload from "../components/Upload.jsx";
 import { Update, UploadFileRounded, UploadRounded } from "@mui/icons-material";
+import MultiSelect from "../components/multiSelect.jsx";
+import { Divider, Rate } from "antd";
+import LevelSelect from "../components/LevelSelector.jsx";
 
 const ProfileAvatar = styled.div`
   padding-left:3rem;
@@ -129,6 +132,42 @@ const OutlinedBox = styled.div`
   padding: 0px 14px;
 `;
 
+const OutlinedLevelSelect = styled.div`
+  min-height: 48px;
+  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.text_secondary};
+  color: ${({ theme }) => theme.text_secondary};
+  ${({ googleButton, theme }) =>
+        googleButton &&
+        `
+    user-select: none; 
+  gap: 16px;`}
+  ${({ button, theme }) =>
+        button &&
+        `
+    user-select: none; 
+  border: none;
+    font-weight: 600;
+    font-size: 16px;
+    background: ${theme.button};
+    color:'${theme.bg}';`}
+    ${({ activeButton, theme }) =>
+        activeButton &&
+        `
+    user-select: none; 
+  border: none;
+    background: ${theme.primary};
+    color: white;`}
+  margin: 3px 20px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0px 14px;
+`;
+
 const ButtonContainer = styled.div`
 font-size: 14px;
   cursor: pointer;
@@ -200,7 +239,26 @@ const Profile = () => {
         }
     }, [currentUser])
 
-
+    const handleWeakness = (value) => {
+        setData({
+            ...data, weakSubject: value?.map((it) => {
+                return {
+                    subject: it,
+                    level: 0
+                }
+            })
+        })
+    }
+    const handleStrength = (value) => {
+        setData({
+            ...data, strengthSubject: value?.map((it) => {
+                return {
+                    subject: it,
+                    level: 0
+                }
+            })
+        })
+    }
     return (
         <ProfileMain>
             {
@@ -220,19 +278,8 @@ const Profile = () => {
                     {/* <Grid sx={12}> */}
                     <Grid item sx={6}>
                         <OutlinedBox style={{ marginTop: "12px" }}>
-                            <Select
-                                style={{
-                                    width: "100%",
-                                    color: "white"
-                                }}
-                                placeholder="Select gender"
-                                type="text"
-                                value={data?.gender || user?.gender}
-                                onChange={(e) => setData({ ...data, gender: e.target.value })}
-                            >
-                                <MenuItem value="Male" selected>Male</MenuItem>
-                                <MenuItem value="Female">Female</MenuItem>
-                            </Select>
+                            <input type="radio" value={"Male"} onChange={(e) => setData({ ...data, gender: e.target.value })} name='gender' /> Male
+                            <input type="radio" value={"Female"} onChange={(e) => setData({ ...data, gender: e.target.value })} name='gender' /> Female
                         </OutlinedBox>
                     </Grid>
                     <Grid item sx={6}>
@@ -246,26 +293,50 @@ const Profile = () => {
                         </OutlinedBox>
                     </Grid>
                     <Grid item sx={6}>
-
                         {
                             <OutlinedBox style={{ marginTop: "12px" }}>
-                                <TextInput
-                                    placeholder="Enter Strength Subject like MATH-2, (Subject-level of strength)*"
-                                    type="text"
-                                    value={data?.strengthSubject || user?.strengthSubjects?.map((it) => it.subject + '-' + it.level)?.join(',')}
-                                    onChange={(e) => setData({ ...data, strengthSubject: e.target.value })}
+                                <MultiSelect
+                                    defaltValue={data.user?.strengthSubjects?.map((it) => it.subject)}
+                                    handleChange={handleStrength}
+                                />
+                                <MultiSelect
+                                    defaltValue={user?.weakSubjects?.map((it) => it.subject)}
+                                    handleChange={handleWeakness}
+                                    title="Weakness"
                                 />
                             </OutlinedBox>}
+
+                        {
+                            <OutlinedLevelSelect style={{ marginTop: "12px" }}>
+                                <Divider style={{ color: 'gray', borderColor: 'gray' }}>Strength</Divider>
+                                {
+                                    data?.strengthSubject?.map((it, index) => {
+                                        return <>
+                                            <div>
+                                                <Divider style={{ color: 'gray', borderColor: 'gray' }} orientation={index % 2 == 0 ? "left" : "right"}>{it?.subject}</Divider> <LevelSelect value={it?.value} />
+                                            </div>
+                                        </>
+
+                                    })
+                                }
+                                <br />
+                            </OutlinedLevelSelect>}
                     </Grid>
                     <Grid item sx={6}>
-                        <OutlinedBox style={{ marginTop: "12px" }}>
-                            <TextInput
-                                placeholder="Enter Weak Subject like MATH-2, (Subject-level of weekness)"
-                                type="text"
-                                value={data?.weakSubject || user?.weakSubjects?.map((it) => it.subject + '-' + it.level)?.join(',')}
-                                onChange={(e) => setData({ ...data, weakSubject: e.target.value })}
-                            />
-                        </OutlinedBox>
+                        <OutlinedLevelSelect style={{ marginTop: "12px" }}>
+                            <Divider style={{ color: 'gray', borderColor: 'gray' }}>Weakness</Divider>
+                            {
+                                data?.weakSubject?.map((it, index) => {
+                                    return <>
+                                        <div>
+                                            <Divider orientation={index % 2 == 0 ? "left" : "right"} style={{ color: 'gray', borderColor: 'gray' }}>{it?.subject}</Divider> <LevelSelect value={it?.value} />
+                                        </div>
+                                    </>
+
+                                })
+                            }
+                            <br />
+                        </OutlinedLevelSelect>
 
                     </Grid>
                     {/* </Grid> */}
