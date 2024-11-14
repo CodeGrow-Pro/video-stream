@@ -37,20 +37,8 @@ export const getUsers = async (token) => await API.get('/user', { headers: { "Au
 export const UpdateUser = async (token, body) => await API.put(`/user/${body.userId}`, {
     class: body.class,
     gender: body.gender,
-    strengthSubjects: body?.strengthSubject?.split(',').map((it) => {
-        let val = it?.split('-')
-        return {
-            subject: val?.[0],
-            level: Number(val?.[1])
-        }
-    }),
-    weakSubjects: body?.weakSubject?.split(',').map((it) => {
-        let val = it?.split('-')
-        return {
-            subject: val?.[0],
-            level: Number(val?.[1])
-        }
-    }),
+    strengthSubjects: body?.strengthSubject,
+    weakSubjects: body?.weakSubject,
 }, { headers: { "Authorization": `Bearer ${token}` } }, {
     withCredentials: true
 });

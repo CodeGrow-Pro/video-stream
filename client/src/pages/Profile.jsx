@@ -259,6 +259,21 @@ const Profile = () => {
             })
         })
     }
+
+    const handleChangeRating = (value, index) => {
+        data.strengthSubject[index] = {
+            ...data.strengthSubject[index],
+            level: value
+        }
+        setData({ ...data })
+    }
+    const handleChangeRating2 = (value, index) => {
+        data.weakSubject[index] = {
+            ...data.weakSubject[index],
+            level: value
+        }
+        setData({ ...data })
+    }
     return (
         <ProfileMain>
             {
@@ -313,7 +328,8 @@ const Profile = () => {
                                     data?.strengthSubject?.map((it, index) => {
                                         return <>
                                             <div>
-                                                <Divider style={{ color: 'gray', borderColor: 'gray' }} orientation={index % 2 == 0 ? "left" : "right"}>{it?.subject}</Divider> <LevelSelect value={it?.value} />
+                                                <Divider style={{ color: 'gray', borderColor: 'gray' }} orientation={index % 2 == 0 ? "left" : "right"}>{it?.subject}</Divider>
+                                                <LevelSelect index={index} handleChangeRating={handleChangeRating} value={it?.level} />
                                             </div>
                                         </>
 
@@ -329,7 +345,8 @@ const Profile = () => {
                                 data?.weakSubject?.map((it, index) => {
                                     return <>
                                         <div>
-                                            <Divider orientation={index % 2 == 0 ? "left" : "right"} style={{ color: 'gray', borderColor: 'gray' }}>{it?.subject}</Divider> <LevelSelect value={it?.value} />
+                                            <Divider orientation={index % 2 == 0 ? "left" : "right"} style={{ color: 'gray', borderColor: 'gray' }}>{it?.subject}</Divider>
+                                            <LevelSelect handleChangeRating={handleChangeRating2} index={index} value={it?.level} />
                                         </div>
                                     </>
 
