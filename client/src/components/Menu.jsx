@@ -141,7 +141,7 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
             {
                 currentUser ?
                     <>
-                        <a href='/live' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+                        <a href='/#/live' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements style={location.pathname === "/live" ? activeStyle : {}}>
                                 <SettingsInputAntennaIcon />
                                 <NavText>Live</NavText>
