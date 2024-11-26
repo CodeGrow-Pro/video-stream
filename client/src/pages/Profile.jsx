@@ -208,14 +208,23 @@ const Profile = () => {
     const [data, setData] = useState({
         userId: currentUser?._id,
         class: user?.class,
-        gender: user?.gender
+        gender: user?.gender,
+        weakSubject:user?.weakSubjects || [],
+        strengthSubject: user?.strengthSubjects || []
     })
     const [Loader2, setLoader2] = useState(false)
     const getUser = async () => {
         setLoader(true)
         await getUsers(token).then((res) => {
-            setUser(res.data)
+            setUser(res?.data)
             setName(res.data.name);
+            setData({
+                userId: res.data._id,
+                class: res.data.class,
+                gender: res.data.gender,
+                weakSubject: res.data.weakSubjects || [],
+                strengthSubject: res.data.strengthSubjects || []
+            })
             setLoader(false)
         }).catch((error) => {
             console.log(error)
@@ -293,12 +302,14 @@ const Profile = () => {
                     {/* <Grid sx={12}> */}
                     <Grid item sx={6}>
                         <OutlinedBox style={{ marginTop: "12px" }}>
+                            <p>Select Gender : </p>
                             <input type="radio" value={"Male"} onChange={(e) => setData({ ...data, gender: e.target.value })} name='gender' /> Male
                             <input type="radio" value={"Female"} onChange={(e) => setData({ ...data, gender: e.target.value })} name='gender' /> Female
                         </OutlinedBox>
                     </Grid>
                     <Grid item sx={6}>
                         <OutlinedBox style={{ marginTop: "12px" }}>
+                            <p>Type Class : </p>
                             <TextInput
                                 placeholder="Enter Class*"
                                 type="text"
@@ -310,16 +321,20 @@ const Profile = () => {
                     <Grid item sx={6}>
                         {
                             <OutlinedBox style={{ marginTop: "12px" }}>
+                                <p>Strength Subjects : </p>
                                 <MultiSelect
-                                    defaltValue={data.user?.strengthSubjects?.map((it) => it.subject)}
+                                    defaltValue={data?.strengthSubject?.map((it) => it.subject)}
                                     handleChange={handleStrength}
                                 />
-                                <MultiSelect
-                                    defaltValue={user?.weakSubjects?.map((it) => it.subject)}
-                                    handleChange={handleWeakness}
-                                    title="Weakness"
-                                />
                             </OutlinedBox>}
+                        <OutlinedBox style={{ marginTop: "12px" }}>
+                            <p>Weak Subjects</p>
+                            <MultiSelect
+                                defaltValue={data?.weakSubject?.map((it) => it.subject)}
+                                handleChange={handleWeakness}
+                                title="Weakness"
+                            />
+                        </OutlinedBox>
 
                         {
                             <OutlinedLevelSelect style={{ marginTop: "12px" }}>
