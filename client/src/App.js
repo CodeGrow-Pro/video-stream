@@ -23,6 +23,7 @@ import { closeSignin } from "./redux/setSigninSlice.jsx";
 import Live from "./pages/live.jsx";
 import RequestedClasses from "./pages/RequestedClasses.jsx";
 import DoubtClassRequestForm from "./components/DoubtClassRequestForm.jsx";
+import Invites from "./pages/Invites.jsx";
 
 const Frame = styled.div`
   display: flex;
@@ -94,6 +95,7 @@ function App() {
               <Route path='/podcast/:id' exact element={<PodcastDetails />} />
               <Route path='/showpodcasts/:type' exact element={<DisplayPodcasts />} />
               <Route path='/live' exact element={<Live />} />
+              <Route path='/invite-classes' exact element={<Invites setSignInOpen={setSignInOpen} />} />
               <Route path='/requested-classes' exact element={<RequestedClasses setSignInOpen={setSignInOpen} />} />
             </Routes>
           </Frame>

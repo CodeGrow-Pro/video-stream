@@ -254,22 +254,28 @@ export const DoubtClassCard = ({ podcast, user, setSignInOpen }) => {
                 }>Join As Host</Button> : <Button variant='contained' target='_blank' size='small' style={{ background: "blue" }} onClick={() => {
                   window.location.href = podcast?.classMeetingLink
                 }
-                }>Join As Student</Button>
-                : <>
-                  <Button variant='contained' size='small' style={{ background: "blue" }} onClick={() => updateDoubtClassStatus({
-                    status: "accepted",
-                    id: podcast?._id,
-                    classMeetingLink: window.location.protocol + '//' +
-                      window.location.host + '/live' +
-                      '?roomID=' +
-                      randomID(5)
-                  })}>Accept</Button>
-                  <Button variant='outlined' size='small' onClick={() => updateDoubtClassStatus({
-                    status: "rejected",
-                    id: podcast?._id
-                  })}
-                    style={{ background: "red", color: "black" }}>Reject</Button>
-                </>
+                }>
+                  Join As Student
+                </Button>
+                : user?._id == podcast?.creator?._id ?
+                  <Button variant='outlined' size='small'
+                    style={{ background: "green", color: "black" }}>
+                      Looking For Mentor!
+                    </Button> : <>
+                    <Button variant='contained' size='small' style={{ background: "blue" }} onClick={() => updateDoubtClassStatus({
+                      status: "accepted",
+                      id: podcast?._id,
+                      classMeetingLink: window.location.protocol + '//' +
+                        window.location.host + '/live' +
+                        '?roomID=' +
+                        randomID(5)
+                    })}>Accept</Button>
+                    <Button variant='outlined' size='small' onClick={() => updateDoubtClassStatus({
+                      status: "rejected",
+                      id: podcast?._id
+                    })}
+                      style={{ background: "red", color: "black" }}>Reject</Button>
+                  </>
             }
           </MainInfo>
         </CardInformation>

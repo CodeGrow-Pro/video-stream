@@ -173,19 +173,6 @@ const RequestedClasses = ({ setSignInOpen }) => {
                             ))}
                         </Podcasts>
                     </FilterContainer>
-                    <FilterContainer>
-                        <Link to={`/showpodcasts/sports`} style={{ textDecoration: "none" }}>
-                            <Topic>Other Requested Classes
-                                {/* <Span>Show All</Span> */}
-                            </Topic>
-                        </Link>
-                        <Podcasts>
-                            {sports.slice(0, 10).map((podcast) => (
-                                <DoubtClassCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
-                            ))}
-                            {sports?.length == 0 && <Span>Data Not Found!</Span>}
-                        </Podcasts>
-                    </FilterContainer>
                 </>
             }
         </RequestedClassesMain>

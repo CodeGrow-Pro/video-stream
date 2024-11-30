@@ -18,12 +18,14 @@ import TelegramIcon from '@mui/icons-material/Telegram';
 import LogoIcon from '../Images/Logo.png'
 import { openSignin } from '../redux/setSigninSlice';
 import DuoIcon from '@mui/icons-material/Duo';
-import { ListAltOutlined } from '@mui/icons-material';
+import { InventoryOutlined, ListAltOutlined } from '@mui/icons-material';
 const MenuContainer = styled.div`
   flex: 0.5;
   flex-direction: column;
   height: 100vh;
   display: flex;
+  overflow:auto;
+  overflow-x: hidden;
   box-sizing: border-box;
   align-items: flex-start;
   background-color: ${({ theme }) => theme.bg};
@@ -53,7 +55,6 @@ width: 100%;
     background-color: ${({ theme }) => theme.text_secondary + 50};
     border-radius:10px;
     margin:5px;
-    border-right:5px solid blue,
     }
 `;
 
@@ -103,7 +104,7 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
         dispatch(logout());
         navigate(`/`);
     };
-    const activeStyle = { backgroundColor: "#b1b2b3" + 50, fontWeight: "bold", borderRadius: "10px", margin: "5px", borderRight: "5px solid blue" };
+    const activeStyle = { backgroundColor: "#b1b2b3" + 50, fontWeight: "bold", borderRadius: "10px", margin: "5px" };
     useEffect(() => {
         if (!currentUser && location.pathname !== "/" && location.pathname !== "/search") {
             dispatch(
@@ -147,10 +148,16 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
                                 <NavText>Live</NavText>
                             </Elements>
                         </a>
+                        <Link to='/invite-classes' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+                            <Elements style={location.pathname === "/invite-classes" ? activeStyle : {}}>
+                                <InventoryOutlined />
+                                <NavText>Invites</NavText>
+                            </Elements>
+                        </Link>
                         <Link to='/requested-classes' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements style={location.pathname === "/requested-classes" ? activeStyle : {}}>
                                 <ListAltOutlined />
-                                <NavText>Doubt classes</NavText>
+                                <NavText>Invites By You</NavText>
                             </Elements>
                         </Link>
                         <Link to='/favourites' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
@@ -178,8 +185,18 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
                             )
                         } style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements >
+                                <InventoryOutlined />
+                                <NavText>Invites</NavText>
+                            </Elements>
+                        </Link >
+                        <Link onClick={() =>
+                            dispatch(
+                                openSignin()
+                            )
+                        } style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
+                            <Elements >
                                 <ListAltOutlined />
-                                <NavText>Request a class</NavText>
+                                <NavText>Invites By You</NavText>
                             </Elements>
                         </Link >
                         <Link onClick={() =>
