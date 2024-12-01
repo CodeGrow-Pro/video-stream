@@ -227,8 +227,9 @@ export const DoubtClassCard = ({ podcast, user, setSignInOpen }) => {
               <Views>• {podcast.classTime && moment(podcast?.classTime)?.format("DD-MM-YYYY hh:mm AM")}</Views>
             </CreatorInfo>
             <CreatorInfo>
-              <Description>• {podcast.doubtLevel}</Description>
+              {/* <Description>• {podcast.doubtLevel}</Description> */}
               <Views>• {podcast.subject}</Views>
+              <Views>• {podcast.chapterName || "Unknown"}</Views>
             </CreatorInfo>
             <CreatorInfo>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
