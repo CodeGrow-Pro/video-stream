@@ -187,6 +187,7 @@ const DoubtClassRequestForm = ({ setUploadOpen }) => {
         type: "audio",
         classTime: "",
         doubtLevel: "",
+        chapterName: ""
     });
     const [showEpisode, setShowEpisode] = React.useState(false);
     const [disabled, setDisabled] = React.useState(true);
@@ -218,6 +219,7 @@ const DoubtClassRequestForm = ({ setUploadOpen }) => {
                 type: "audio",
                 classTime: "",
                 doubtLevel: "",
+                chapterName: ""
             });
         } else {
             if (podcast.name === "" && podcast.desc === "") {
