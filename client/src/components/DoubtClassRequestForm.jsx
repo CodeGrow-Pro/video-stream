@@ -14,6 +14,7 @@ import { useDispatch } from "react-redux";
 import { openSnackbar } from "../redux/snackbarSlice";
 import { createDoubtClassRequest, createPodcast, uploadFileOnServer } from '../api';
 import { Category } from '../utils/Data';
+import { SUBJECTS, SUBJECTS_CHAPTERS } from '../contant/masterData';
 
 const Container = styled.div`
 width: 100%;
@@ -335,114 +336,25 @@ const DoubtClassRequestForm = ({ setUploadOpen }) => {
                                         }
                                     >
                                         <Option value={podcast.subject} selected disabled hidden>Select Subject</Option>
-                                        {[
-                                            "Mathematics",
-                                            "English",
-                                            "Science",
-                                            "Social Studies",
-                                            "Environmental Studies",
-                                            "Physical Education",
-                                            "Art",
-                                            "Music",
-                                            "Computer Science",
-                                            "History",
-                                            "Geography",
-                                            "Biology",
-                                            "Chemistry",
-                                            "Physics",
-                                            "Economics",
-                                            "Political Science",
-                                            "Sociology",
-                                            "Psychology",
-                                            "Philosophy",
-                                            "Business Studies",
-                                            "Accountancy",
-                                            "Statistics",
-                                            "Computer Applications",
-                                            "Information Technology",
-                                            "Electronics",
-                                            "Mechanical Engineering",
-                                            "Civil Engineering",
-                                            "Electrical Engineering",
-                                            "Marketing",
-                                            "Finance",
-                                            "Human Resource Management",
-                                            "Operations Management",
-                                            "Entrepreneurship",
-                                            "Public Administration",
-                                            "Law",
-                                            "Education",
-                                            "Library Science",
-                                            "Biotechnology",
-                                            "Genetics",
-                                            "Microbiology",
-                                            "Zoology",
-                                            "Botany",
-                                            "Environmental Science",
-                                            "Agricultural Science",
-                                            "Forestry",
-                                            "Veterinary Science",
-                                            "Medicine",
-                                            "Dentistry",
-                                            "Nursing",
-                                            "Pharmacy",
-                                            "Public Health",
-                                            "Nutrition",
-                                            "Physiotherapy",
-                                            "Sports Science",
-                                            "Astronomy",
-                                            "Anthropology",
-                                            "Archaeology",
-                                            "Linguistics",
-                                            "Literature",
-                                            "Fine Arts",
-                                            "Theatre",
-                                            "Film Studies",
-                                            "Media Studies",
-                                            "Journalism",
-                                            "Mass Communication",
-                                            "International Relations",
-                                            "Gender Studies",
-                                            "Cultural Studies",
-                                            "Theology",
-                                            "Religious Studies",
-                                            "Architecture",
-                                            "Urban Planning",
-                                            "Fashion Design",
-                                            "Interior Design",
-                                            "Graphic Design",
-                                            "Animation",
-                                            "Data Science",
-                                            "Machine Learning",
-                                            "Artificial Intelligence",
-                                            "Cybersecurity",
-                                            "Blockchain",
-                                            "Robotics",
-                                            "Software Engineering",
-                                            "Network Engineering",
-                                            "Game Development",
-                                            "Digital Marketing",
-                                            "Econometrics",
-                                            "Geology",
-                                            "Oceanography",
-                                            "Meteorology",
-                                            "Astrophysics",
-                                            "Quantum Physics",
-                                            "Neuroscience",
-                                            "Bioinformatics",
-                                            "Ecology",
-                                            "Molecular Biology",
-                                            "Social Work",
-                                            "Cognitive Science",
-                                            "Ethics",
-                                            "Critical Thinking"
-                                        ].map((category) => (
+                                        {SUBJECTS.map((category) => (
                                             <Option value={category?.toLowerCase()}>{category}</Option>
                                         ))}
                                     </Select>
                                 </OutlinedBox>
 
                             </div>
+                            <OutlinedBox style={{ marginTop: "6px" }}>
+                                <Select
+                                    onChange={
+                                        (e) => setPodcast({ ...podcast, chapterName: e.target.value })
+                                    }
+                                >
+                                    <Option value={podcast.chapterName} selected disabled hidden>Select Chapter Name*</Option>
+                                    {SUBJECTS_CHAPTERS[podcast?.subject?.toLowerCase()] && SUBJECTS_CHAPTERS[podcast?.subject?.toLowerCase()].map((category) => (
+                                        <Option value={category?.toLowerCase()}>{category}</Option>
+                                    ))}
+                                </Select>
+                            </OutlinedBox>
                             <OutlinedBox
                                 button={true}
                                 activeButton={!disabled}

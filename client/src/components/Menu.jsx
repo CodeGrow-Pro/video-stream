@@ -151,13 +151,13 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
                         <Link to='/invite-classes' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements style={location.pathname === "/invite-classes" ? activeStyle : {}}>
                                 <InventoryOutlined />
-                                <NavText>Invites</NavText>
+                                <NavText>Invites Received </NavText>
                             </Elements>
                         </Link>
                         <Link to='/requested-classes' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements style={location.pathname === "/requested-classes" ? activeStyle : {}}>
                                 <ListAltOutlined />
-                                <NavText>Invites By You</NavText>
+                                <NavText>Invites Sent</NavText>
                             </Elements>
                         </Link>
                         <Link to='/favourites' style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
@@ -186,7 +186,7 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
                         } style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements >
                                 <InventoryOutlined />
-                                <NavText>Invites</NavText>
+                                <NavText>Invites Received</NavText>
                             </Elements>
                         </Link >
                         <Link onClick={() =>
@@ -196,7 +196,7 @@ const Menu = ({ setMenuOpen, darkMode, setDarkMode, setUploadOpen, setUploadOpen
                         } style={{ textDecoration: "none", color: "inherit", width: '100%' }}>
                             <Elements >
                                 <ListAltOutlined />
-                                <NavText>Invites By You</NavText>
+                                <NavText>Invites Sent</NavText>
                             </Elements>
                         </Link >
                         <Link onClick={() =>

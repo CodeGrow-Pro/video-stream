@@ -17,6 +17,11 @@ const DoubtClassRequestSchema = new mongoose.Schema({
         type: String,
         default: "",
     },
+    chapterName:{
+        type: String,
+        default: "",
+        required: true,
+    },
     tags: {
         type: [String],
         default: [],
