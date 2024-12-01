@@ -267,7 +267,7 @@ export const DoubtClassCard = ({ podcast, user, setSignInOpen }) => {
                       status: "accepted",
                       id: podcast?._id,
                       classMeetingLink: window.location.protocol + '//' +
-                        window.location.host + '/live' +
+                        window.location.host + '/#/live' +
                         '?roomID=' +
                         randomID(5)
                     })}>Accept</Button>
