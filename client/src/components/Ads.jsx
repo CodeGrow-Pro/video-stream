@@ -18,10 +18,10 @@ const AdBanner = () => {
   }, []);
 
   return (
-    <div style={{ width: "100%" }}>
+    <div style={{ width: "100%", minWidth: '300px', height: '250px' }}>
       <p style={{ color: "white" }}>Ads</p>
       <ins class="adsbygoogle"
-        style={{ display: "block" }}
+        style={{ display: 'block', width: '100%', minWidth: '300px', height: '250px' }}
         data-ad-client="ca-pub-8414862430105960"
         data-ad-slot="2228936492"
         data-ad-format="auto"
