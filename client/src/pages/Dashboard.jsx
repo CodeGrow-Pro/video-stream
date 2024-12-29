@@ -180,7 +180,7 @@ const Dashboard = ({ setSignInOpen }) => {
         :
         <>
           {/* <FilterContainer box={true}> */}
-            <CarouselOnDashboard />
+            {/* <CarouselOnDashboard /> */}
           {/* </FilterContainer> */}
           <FilterContainer>
             <Topic>Most Popular
