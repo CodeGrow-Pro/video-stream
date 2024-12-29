@@ -7,6 +7,7 @@ import { PodcastCard } from '../components/PodcastCard.jsx'
 import { getUsers } from '../api/index';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
+import CarouselOnDashboard from '../components/carousel.jsx';
 
 const DashboardMain = styled.div`
 padding: 20px 20px;
@@ -20,7 +21,7 @@ gap: 20px;
   padding: 6px 10px;
 }
 `;
- const FilterContainer = styled.div`
+const FilterContainer = styled.div`
 display: flex;
 flex-direction: column;
 ${({ box, theme }) => box && `
@@ -178,20 +179,9 @@ const Dashboard = ({ setSignInOpen }) => {
         </Loader>
         :
         <>
-          {/* {currentUser && user?.podcasts?.length > 0 &&
-            <FilterContainer box={true}>
-              <Topic>Your Uploads
-                <Link to={`/profile`} style={{ textDecoration: "none" }}>
-                  <Span>Show All</Span>
-                </Link>
-              </Topic>
-              <Podcasts>
-                {user?.podcasts.slice(0, 10).map((podcast) => (
-                  <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
-                ))}
-              </Podcasts>
-            </FilterContainer>
-          } */}
+          {/* <FilterContainer box={true}> */}
+            <CarouselOnDashboard />
+          {/* </FilterContainer> */}
           <FilterContainer>
             <Topic>Most Popular
               <Link to={`/showpodcasts/mostpopular`} style={{ textDecoration: "none" }}>
