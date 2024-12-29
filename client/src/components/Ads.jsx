@@ -2,15 +2,23 @@ import { useEffect } from 'react';
 
 const AdBanner = () => {
   useEffect(() => {
+    let adsInitialized = false;
     try {
-      (window.adsbygoogle = window.adsbygoogle || []).push({});
+      if (!adsInitialized) {
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+        adsInitialized = true;
+      }
     } catch (e) {
       console.error('Adsbygoogle error:', e);
     }
+
+    return () => {
+      adsInitialized = false; // Reset ads initialization
+    };
   }, []);
 
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <p style={{ color: "white" }}>Ads</p>
       <ins class="adsbygoogle"
         style={{ display: "block" }}
@@ -18,7 +26,7 @@ const AdBanner = () => {
         data-ad-slot="2228936492"
         data-ad-format="auto"
         data-full-width-responsive="true"
-        ></ins>
+      ></ins>
     </div>
   );
 };
