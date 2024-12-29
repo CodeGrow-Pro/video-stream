@@ -8,6 +8,7 @@ import { getUsers } from '../api/index';
 import { Link } from 'react-router-dom';
 import { CircularProgress } from '@mui/material';
 import CarouselOnDashboard from '../components/carousel.jsx';
+import AdBanner from '../components/Ads.jsx';
 
 const DashboardMain = styled.div`
 padding: 20px 20px;
@@ -192,6 +193,7 @@ const Dashboard = ({ setSignInOpen }) => {
               {mostPopular.slice(0, 10).map((podcast) => (
                 <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
               ))}
+              <AdBanner />
             </Podcasts>
           </FilterContainer>
           <FilterContainer>
@@ -204,6 +206,7 @@ const Dashboard = ({ setSignInOpen }) => {
               {comedy.slice(0, 10).map((podcast) => (
                 <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
               ))}
+              <AdBanner />
             </Podcasts>
           </FilterContainer>
           <FilterContainer>
@@ -216,6 +219,7 @@ const Dashboard = ({ setSignInOpen }) => {
               {news.slice(0, 10).map((podcast) => (
                 <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
               ))}
+              <AdBanner />
             </Podcasts>
           </FilterContainer>
           <FilterContainer>
@@ -228,6 +232,7 @@ const Dashboard = ({ setSignInOpen }) => {
               {crime.slice(0, 10).map((podcast) => (
                 <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
               ))}
+              <AdBanner />
             </Podcasts>
           </FilterContainer>
           <FilterContainer>
@@ -240,10 +245,12 @@ const Dashboard = ({ setSignInOpen }) => {
               {sports.slice(0, 10).map((podcast) => (
                 <PodcastCard podcast={podcast} user={user} setSignInOpen={setSignInOpen} />
               ))}
+              <AdBanner />
             </Podcasts>
           </FilterContainer>
         </>
       }
+      <AdBanner />
     </DashboardMain>
   )
 }
